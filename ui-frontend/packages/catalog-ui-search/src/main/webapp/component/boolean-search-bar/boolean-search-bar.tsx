@@ -166,6 +166,10 @@ const BooleanSearchBar = ({
     setTokens(joinTokens)
   }, [value.text])
 
+  React.useEffect(() => {
+    inputRef?.current?.focus?.()
+  }, [inputRef])
+
   const getOptionLabel = (option: any) => {
     if (!option || !option.token) return ''
     if (option.length === 0) return ''
@@ -220,6 +224,8 @@ const BooleanSearchBar = ({
   }, [value.text])
 
   const handleTextChange = (e: any) => {
+    // console.log('Abrar')
+    // alert('hellllllo Abrar')
     onChange({
       ...value,
       text: e.target.value,
@@ -325,7 +331,8 @@ const BooleanSearchBar = ({
         )}
         renderInput={(params) => (
           <TextField
-            data-id="search-input"
+            autoFocus
+            data-id="search-input-Abbbbbrar"
             {...params}
             onKeyDown={(e) => {
               if (e.keyCode === 13) {
@@ -333,13 +340,13 @@ const BooleanSearchBar = ({
               }
             }}
             placeholder={placeholder}
-            inputRef={inputRef}
+            //inputRef={inputRef}
+            // inputRef={(element) => element?.focus?.()}
             size={'small'}
             variant="outlined"
             defaultValue={'*'}
             onChange={handleTextChange}
             value={value.text}
-            autoFocus
             helperText={value.error ? <>{errorMessage}</> : ''}
             InputProps={{
               ...params.InputProps,
